@@ -1,0 +1,32 @@
+.controlBtn{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-right: 2%;
+}
+.controlBtn:disabled{
+    color: gray;
+    background-color: white;
+}
+.controlBtn:disabled:hover{
+    color: gray;
+    background-color: whitesmoke;
+}
+.controlBtn:hover {
+    background-color: #45a049; 
+  }
+  
+  .controlBtn:active {
+    background-color: #3e8e41; 
+  }
+  .card-text{
+    font-size: 23px;
+    font-weight: 500;
+    color: #45a049;
+  }
