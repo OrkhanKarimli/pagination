@@ -47,7 +47,7 @@ const Pagination = ({ itemPerPage,totalPage }) => {
         </div>
          
         ))}
-        <div >
+        <div>
         <button className="controlBtn" onClick={handleClickPrev} disabled={currentPage === 1}>
           Previous
         </button>

@@ -1,9 +1,15 @@
 import React from 'react';
 import './App.css';
-import Pagination from './assets/pages/index'
+import Pagination from './assets/pages/index';
+import Postcomp from './assets/components/postcomp';
 function App() {
   return (
-<Pagination itemPerPage={10} totalPage={10}/>
+    <div>
+      <Pagination itemPerPage={10} totalPage={10}/>
+       <Postcomp></Postcomp> 
+    </div>
+
+
   );
 }
 
