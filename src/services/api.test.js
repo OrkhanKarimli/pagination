@@ -1,36 +1,39 @@
-// api.test.js
-const {axios} = require('axios');
+'use strict';
+const axios=require("axios");
+import { waitFor } from '@testing-library/react';
 import { fetchItems } from './api';
 
 jest.mock('axios');
 
 describe('fetchItems', () => {
-    it('success', async () => {
+    it('fetches successfully data from an API', async () => {
         const mockData = [{ id: 1, name: 'Test Product' }];
         axios.get.mockResolvedValue({ data: mockData });
 
-        const data = await fetchItems(1, 10);
-
-        expect(data).toEqual(mockData);
-        expect(axios.get).toHaveBeenCalledWith('https://api.escuelajs.co/api/v1/products', {
-            params: {
-                page: 1,
-                limit: 10,
-            },
+        await waitFor(async () => {
+            const data = await fetchItems(1, 10);
+            expect(data).toEqual(mockData);
+            expect(axios.get).toHaveBeenCalledWith('https://api.escuelajs.co/api/v1/products', {
+                params: {
+                    page: 1,
+                    limit: 10,
+                },
+            });
         });
     });
 
-    it('API fail', async () => {
+    it('returns an empty array when the API call fails', async () => {
         axios.get.mockRejectedValue(new Error('Network Error'));
 
-        const data = await fetchItems(1, 10);
-
-        expect(data).toEqual([]);
-        expect(axios.get).toHaveBeenCalledWith('https://api.escuelajs.co/api/v1/products', {
-            params: {
-                page: 1,
-                limit: 10,
-            },
+        await waitFor(async () => {
+            const data = await fetchItems(1, 10);
+            expect(data).toEqual([]);
+            expect(axios.get).toHaveBeenCalledWith('https://api.escuelajs.co/api/v1/products', {
+                params: {
+                    page: 1,
+                    limit: 10,
+                },
+            });
         });
     });
 });

@@ -1,4 +1,6 @@
-const axios = require('axios');
+'use strict';
+const axios=require("axios");
+
 const API_URL = "https://api.escuelajs.co/api/v1";
 
 export const fetchItems = async (page, itemPerPage) => {
@@ -15,5 +17,3 @@ export const fetchItems = async (page, itemPerPage) => {
         return [];
     }
 };
-
-
