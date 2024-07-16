@@ -5,17 +5,22 @@ import './index.css'
 const Pagination = ({ itemPerPage,totalPage }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [items, setItems] = useState([]);
- 
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchItems()
-      .then(data => {
+   const fetchData=async()=>{
+     try{
+        const data=await fetchItems();
         setItems(data);
+        setLoading(false); 
         
-      })
-      .catch(error => {
+      }
+      catch {
         console.error('Error fetching products:', error);
-      });
+        setLoading(false);
+      };
+   }
+     fetchData();
   }, [currentPage, itemPerPage]); 
 
   const handleClickPrev = () => {
@@ -32,7 +37,10 @@ const Pagination = ({ itemPerPage,totalPage }) => {
 
   const startIndex = (currentPage - 1) * itemPerPage;
   const endIndex = startIndex + itemPerPage;
-  const currentProducts = items.slice(startIndex, endIndex);
+  const currentProducts = items && items.length > 0 ? items.slice(startIndex, endIndex) : [];
+  if (loading){
+    return <p> Loading... </p>
+  }
 
   return (
     <div className="pagination container mt-3">
