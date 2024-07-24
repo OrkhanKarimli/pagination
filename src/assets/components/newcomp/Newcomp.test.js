@@ -1,6 +1,6 @@
 import React,{act} from 'react';
-import Newcomp from './newcomp.jsx';
-import { getAllByText, render, screen, waitFor } from '@testing-library/react';
+import Newcomp from './Newcomp';
+import { fireEvent, getAllByText, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect'; 
 import userEvent from '@testing-library/user-event';
 
@@ -53,13 +53,28 @@ import userEvent from '@testing-library/user-event';
 //     let element=screen.getByText("link");
 //     expect(element.href).toContain("https://");
 // })
-it("test count",async ()=>{
-    const user=userEvent.setup();
+// it("test count",async ()=>{
+//     const user=userEvent.setup();
+//     render(<Newcomp/>);
+//    await    user.pointer({
+//         keys:'[MouseLeft]',
+//         target:screen.getByRole('button')
+//     })
+//     let element=screen.getByRole("heading");
+//     expect(element).toHaveTextContent(1);
+// })
+test("test radio button",()=>{
     render(<Newcomp/>);
-   await    user.pointer({
-        keys:'[MouseLeft]',
-        target:screen.getByRole('button')
-    })
-    let element=screen.getByRole("heading");
-    expect(element).toHaveTextContent(1);
+    const chooseOne=screen.getByLabelText('1');
+    const chooseTwo=screen.getByLabelText('2');
+    expect(chooseOne).toBeInTheDocument();
+    expect(chooseTwo).toBeInTheDocument();
+    expect(screen.queryByText(/Lorem ipsum/i)).toBeNull();
+    fireEvent.click(chooseOne);
+    expect(screen.queryByText(/Salam necesen?/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Yaxsiyam sen necesen?/i)).toBeNull();
+    fireEvent.click(chooseTwo);
+    expect(screen.queryByText(/Yaxsiyam sen necesen?/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Salam necesen?/i)).toBeNull();
+
 })

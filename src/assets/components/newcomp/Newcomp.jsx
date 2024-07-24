@@ -12,12 +12,51 @@ function Newcomp(){
     // useEffect(()=>{
     // setName("as")
     // },300)
-    const [count,setCount]=useState(0);
-    return(
-      <div>
-        <h1>{count}</h1>
-        <button onClick={()=>{setCount(count+1)}}>add</button>
-      </div>
+    // const [count,setCount]=useState(0);
+    // return(
+    //   <div>
+    //     <h1>{count}</h1>
+    //     <button onClick={()=>{setCount(count+1)}}>add</button>
+    //   </div>
+    const [selectedOption, setSelectedOption] = useState('');
+
+    const handleOptionChange = (e) => {
+      setSelectedOption(e.target.value);
+    };
+   return(
+    <> <h1>Radyo Buttons</h1>
+    <div>
+      <input 
+        type="radio" 
+        id="yes" 
+        name="CHOOSE" 
+        value="1" 
+       
+        checked={selectedOption === '1'} 
+        onChange={handleOptionChange} 
+      />
+      <label htmlFor="yes">1</label>
+    </div>
+    <div>
+      <input 
+        type="radio" 
+        id="no" 
+        name="CHOOSE" 
+        value="2" 
+        checked={selectedOption === '2'} 
+        onChange={handleOptionChange} 
+      />
+      <label htmlFor="no">2</label>
+    </div>
+    <div>
+      {selectedOption === '1' && <p>Salam necesen?</p>}
+      {selectedOption === '2' && <p>Yaxsiyam sen necesen?</p>}
+    </div></>
+   
+   );
+   
+
+
         
         // <div className='Newcomp'>
         //   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur nesciunt numquam molestias perspiciatis nostrum inventore aliquid? Voluptatem, itaque! Ipsa tempora rem repellendus debitis eaque magni facilis eligendi teze sunt corrupti commodi.
@@ -47,7 +86,7 @@ function Newcomp(){
    // link</a>
 //</div>
 
-    )
+    
 }
 
 export default Newcomp;

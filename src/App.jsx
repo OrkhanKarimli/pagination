@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
-import Pagination from './assets/pages/index';
-import Postcomp from './assets/components/postcomp';
+
+import Newcomp from './assets/components/newcomp/Newcomp';
 function App() {
   return (
     <div>
-      <Pagination itemPerPage={10} totalPage={10}/>
-       <Postcomp></Postcomp> 
+<Newcomp></Newcomp>
     </div>
 
 
