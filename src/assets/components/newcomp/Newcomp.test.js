@@ -69,12 +69,13 @@ test("test radio button",()=>{
     const chooseTwo=screen.getByLabelText('2');
     expect(chooseOne).toBeInTheDocument();
     expect(chooseTwo).toBeInTheDocument();
-    expect(screen.queryByText(/Lorem ipsum/i)).toBeNull();
+    expect(screen.queryByText(/Salam necesen/i)).toBeNull();
+    expect(screen.queryByText(/Yaxsiyam sen necesen?/i)).toBeNull();
     fireEvent.click(chooseOne);
-    expect(screen.queryByText(/Salam necesen?/i)).toBeInTheDocument();
+    expect(screen.getByText(/Salam necesen?/i)).toBeInTheDocument();
     expect(screen.queryByText(/Yaxsiyam sen necesen?/i)).toBeNull();
     fireEvent.click(chooseTwo);
-    expect(screen.queryByText(/Yaxsiyam sen necesen?/i)).toBeInTheDocument();
+    expect(screen.getByText(/Yaxsiyam sen necesen?/i)).toBeInTheDocument();
     expect(screen.queryByText(/Salam necesen?/i)).toBeNull();
 
 })
